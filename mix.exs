@@ -7,7 +7,10 @@ defmodule SpanishDoc.MixProject do
       version: "1.0.0",
       elixir: "~> 1.15",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      description: description(),
+      package: package(),
+      deps: deps(),
+      source_url: "https://github.com/salva-ruiz/spanish_doc"
     ]
   end
 
@@ -23,6 +26,18 @@ defmodule SpanishDoc.MixProject do
     [
       {:ex_doc, "~> 0.27", only: :dev, runtime: false},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
+    ]
+  end
+
+  defp description() do
+    "A few sentences (a paragraph) describing the project."
+  end
+
+  defp package() do
+    [
+      files: ~w(lib .formatter.exs mix.exs README.md LICENSE CHANGELOG),
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/salva-ruiz/spanish_doc"}
     ]
   end
 end
