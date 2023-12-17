@@ -30,12 +30,12 @@ defmodule SpanishDoc.MixProject do
   end
 
   defp description() do
-    "A few sentences (a paragraph) describing the project."
+    "A library to process Spanish NIF/NIE identity documentation numbers."
   end
 
   defp package() do
     [
-      files: ~w(lib .formatter.exs mix.exs README.md LICENSE CHANGELOG),
+      files: ~w(lib .formatter.exs mix.exs README.md LICENSE),
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/salva-ruiz/spanish_doc"}
     ]
