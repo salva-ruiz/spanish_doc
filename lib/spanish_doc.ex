@@ -63,7 +63,7 @@ defmodule SpanishDoc do
       {:error, "Document not valid"}
 
   """
-  @spec parse(String.t()) :: {:ok, String.t()} | {:error, String.t()}
+  @spec parse(String.t()) :: {:ok, :nif | :nie, String.t()} | {:error, String.t()}
   def parse(text) when is_binary(text) do
     with {:ok, doc} <- new(text), do: {:ok, doc_type(doc), to_string(doc)}
   end
@@ -86,7 +86,7 @@ defmodule SpanishDoc do
       {:error, "Document not valid"}
 
   """
-  @spec obfuscate(String.t()) :: {:ok, String.t()} | {:error, String.t()}
+  @spec obfuscate(String.t()) :: {:ok, :nif | :nie, String.t()} | {:error, String.t()}
   def obfuscate(text) when is_binary(text) do
     with {:ok, doc} <- new(text) do
       case doc do
