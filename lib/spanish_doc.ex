@@ -39,19 +39,19 @@ defmodule SpanishDoc do
   ## Examples
 
       iex> SpanishDoc.parse("16659622D")
-      {:ok, "16659622D"}
+      {:ok, :nif, "16659622D"}
 
       iex> SpanishDoc.parse("M2919200V")
-      {:ok, "M2919200V"}
+      {:ok, :nif, "M2919200V"}
 
       iex> SpanishDoc.parse("Q4978527B")
-      {:ok, "Q4978527B"}
+      {:ok, :nif, "Q4978527B"}
 
       iex> SpanishDoc.parse("Y6115461M")
-      {:ok, "Y6115461M"}
+      {:ok, :nie, "Y6115461M"}
 
       iex> SpanishDoc.parse("16.659.622-D")
-      {:ok, "16659622D"}
+      {:ok, :nif, "16659622D"}
 
       iex> SpanishDoc.parse("16659622Z")
       {:error, "Document not valid"}
@@ -65,7 +65,7 @@ defmodule SpanishDoc do
   """
   @spec parse(String.t()) :: {:ok, String.t()} | {:error, String.t()}
   def parse(text) when is_binary(text) do
-    with {:ok, doc} <- new(text), do: {:ok, to_string(doc)}
+    with {:ok, doc} <- new(text), do: {:ok, doc_type(doc), to_string(doc)}
   end
 
   @doc """
@@ -74,13 +74,13 @@ defmodule SpanishDoc do
   ## Examples
 
       iex> SpanishDoc.obfuscate("85033335N")
-      {:ok, "***3333**"}
+      {:ok, :nif, "***3333**"}
 
       iex> SpanishDoc.obfuscate("E90725946")
-      {:ok, "***7259**"}
+      {:ok, :nif, "***7259**"}
 
       iex> SpanishDoc.obfuscate("Y7811422S")
-      {:ok, "****1422*"}
+      {:ok, :nie, "****1422*"}
 
       iex> SpanishDoc.obfuscate("hello")
       {:error, "Document not valid"}
@@ -91,10 +91,10 @@ defmodule SpanishDoc do
     with {:ok, doc} <- new(text) do
       case doc do
         %NIF{} ->
-          {:ok, "***" <> String.slice(text, 3, 4) <> "**"}
+          {:ok, doc_type(doc), "***" <> String.slice(text, 3, 4) <> "**"}
 
         %NIE{} ->
-          {:ok, "****" <> String.slice(text, 4, 4) <> "*"}
+          {:ok, doc_type(doc), "****" <> String.slice(text, 4, 4) <> "*"}
       end
     end
   end
@@ -152,4 +152,7 @@ defmodule SpanishDoc do
   end
 
   defp parse_error(), do: {:error, "Document not valid"}
+
+  defp doc_type(%NIF{}), do: :nif
+  defp doc_type(%NIE{}), do: :nie
 end

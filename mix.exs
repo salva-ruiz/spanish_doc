@@ -4,7 +4,7 @@ defmodule SpanishDoc.MixProject do
   def project do
     [
       app: :spanish_doc,
-      version: "1.0.0",
+      version: "1.1.0",
       elixir: "~> 1.15",
       start_permanent: Mix.env() == :prod,
       description: description(),

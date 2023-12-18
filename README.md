@@ -12,7 +12,7 @@ Add `spanish_doc` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:spanish_doc, "~> 1.0.0"}
+    {:spanish_doc, "~> 1.1.0"}
   ]
 end
 ```
@@ -24,8 +24,8 @@ SpanishDoc.valid?("16659622D")
 true
 
 SpanishDoc.parse("16.659.622-D")
-{:ok, "16659622D"}
+{:ok, :nif, "16659622D"}
 
 SpanishDoc.obfuscate("E90725946")
-{:ok, "***7259**"}
+{:ok, :nif, "***7259**"}
 ```
