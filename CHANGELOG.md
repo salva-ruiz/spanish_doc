@@ -1,4 +1,8 @@
-# Changelog for SpanishDoc
+# Changelog
+
+## v1.2.0 (2023-12-20)
+
+* Refactoring and improvement of documentation.
 
 ## v1.1.0 (2023-12-18)
 

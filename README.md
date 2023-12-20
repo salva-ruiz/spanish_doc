@@ -1,9 +1,9 @@
-# SpanishDoc
+# Introduction
 
-A library to parse Spanish identity documentation numbers like:
+**SpanishDoc** is a library to parse Spanish identity documentation numbers like:
 
-  * NIF: Número de Identificación Fiscal
-  * NIE: Número de Identificación de Extranjeros
+  * NIF: _Número de Identificación Fiscal._
+  * NIE: _Número de Identificación de Extranjeros._
 
 ## Installation
 
@@ -12,7 +12,7 @@ Add `spanish_doc` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:spanish_doc, "~> 1.1.0"}
+    {:spanish_doc, "~> 1.2.0"}
   ]
 end
 ```

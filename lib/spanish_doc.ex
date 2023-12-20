@@ -1,6 +1,6 @@
 defmodule SpanishDoc do
   @moduledoc """
-  A module to process Spanish NIF/NIE document numbers.
+  A module to parse, validate and obfuscate Spanish identity documentation numbers.
   """
 
   alias SpanishDoc.NIF
@@ -56,7 +56,10 @@ defmodule SpanishDoc do
       iex> SpanishDoc.parse("16659622Z")
       {:error, "Document not valid"}
 
-      iex> SpanishDoc.parse("12345678")
+      iex> SpanishDoc.parse("123456789")
+      {:error, "Document not valid"}
+
+      iex> SpanishDoc.parse("1234")
       {:error, "Document not valid"}
 
       iex> SpanishDoc.parse("hello")
@@ -146,8 +149,11 @@ defmodule SpanishDoc do
 
   defp new(text) when is_binary(text) do
     case text |> String.replace([" ", ".", "-"], "") |> String.upcase() do
-      text when byte_size(text) == 9 -> new(text)
-      _ -> parse_error()
+      text when byte_size(text) == 9 ->
+        new(text)
+
+      _ ->
+        parse_error()
     end
   end
 

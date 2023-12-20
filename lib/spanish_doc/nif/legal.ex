@@ -10,8 +10,8 @@ defmodule SpanishDoc.NIF.Legal do
   @checking ~w(T R W A G M Y F P D X B N J Z S Q V H L C K E 0 1 2 3 4 5 6 7 8 9)
   defguard is_check(checking) when checking in @checking
 
-  def new(<<letter::binary-size(1)>>, number) do
-    {even, odd} =
+  def new(<<letter::binary-1>>, number) do
+    {evens, odds} =
       number
       |> Integer.to_string()
       |> String.pad_leading(7, "0")
@@ -19,10 +19,10 @@ defmodule SpanishDoc.NIF.Legal do
       |> Enum.with_index(fn digit, index -> {String.to_integer(digit), index} end)
       |> Enum.split_with(fn {_digit, index} -> Integer.is_odd(index) end)
 
-    even = Enum.reduce(even, 0, fn {digit, _index}, acc -> digit + acc end)
+    evens = Enum.reduce(evens, 0, fn {digit, _index}, acc -> digit + acc end)
 
-    odd =
-      Enum.reduce(odd, 0, fn {digit, _index}, acc ->
+    odds =
+      Enum.reduce(odds, 0, fn {digit, _index}, acc ->
         case Integer.digits(digit * 2) do
           [units] -> units + acc
           [tens, units] -> tens + units + acc
@@ -30,7 +30,7 @@ defmodule SpanishDoc.NIF.Legal do
       end)
 
     digit =
-      (10 - rem(even + odd, 10))
+      (10 - rem(evens + odds, 10))
       |> Integer.digits()
       |> List.last()
 

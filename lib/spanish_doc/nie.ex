@@ -19,7 +19,7 @@ defmodule SpanishDoc.NIE do
       |> rem(23)
       |> then(fn digit -> Enum.at(@checking, digit) end)
 
-    struct(SpanishDoc.NIE, type: :nie, letter: letter, number: number, checking: checking)
+    struct(__MODULE__, type: :nie, letter: letter, number: number, checking: checking)
   end
 
   defimpl String.Chars do

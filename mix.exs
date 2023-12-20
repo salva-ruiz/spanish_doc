@@ -1,16 +1,26 @@
 defmodule SpanishDoc.MixProject do
   use Mix.Project
 
+  @version "1.2.0"
+  @source_url "https://github.com/salva-ruiz/spanish_doc"
+
+
   def project do
     [
       app: :spanish_doc,
-      version: "1.1.0",
+      version: "1.2.0",
       elixir: "~> 1.15",
       start_permanent: Mix.env() == :prod,
-      description: description(),
-      package: package(),
       deps: deps(),
-      source_url: "https://github.com/salva-ruiz/spanish_doc"
+      source_url: @source_url,
+
+      # Hex
+      description: "A library to process Spanish NIF/NIE identity documentation numbers.",
+      package: package(),
+
+      # Docs
+      name: "SpanishDoc",
+      docs: docs()
     ]
   end
 
@@ -29,15 +39,23 @@ defmodule SpanishDoc.MixProject do
     ]
   end
 
-  defp description() do
-    "A library to process Spanish NIF/NIE identity documentation numbers."
-  end
-
   defp package() do
     [
-      files: ~w(lib .formatter.exs mix.exs README.md LICENSE),
+      maintainers: ["Salva Ruiz"],
+      files: ~w(lib .formatter.exs mix.exs README.md CHANGELOG.md LICENSE),
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/salva-ruiz/spanish_doc"}
+      links: %{"GitHub" => @source_url}
+    ]
+  end
+
+  defp docs do
+    [
+      main: "SpanishDoc",
+      source_ref: "v#{@version}",
+      extra_section: "GUIDES",
+      source_url: @source_url,
+      skip_undefined_reference_warnings_on: ["CHANGELOG.md"],
+      extras: ["CHANGELOG.md", "README.MD"]
     ]
   end
 end

@@ -15,12 +15,13 @@ defmodule SpanishDoc.NIF do
 
   def new(number) when is_8digits(number) do
     checking = Enum.at(@checking, rem(number, 23))
-    struct(SpanishDoc.NIF, number: number, checking: checking)
+    struct(__MODULE__, number: number, checking: checking)
   end
 
   def new(<<letter::binary-1>>, number) do
-    doc = new(number)
-    struct(doc, letter: letter)
+    number
+    |> new()
+    |> struct(letter: letter)
   end
 
   defimpl String.Chars do
