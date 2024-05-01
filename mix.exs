@@ -1,14 +1,14 @@
 defmodule SpanishDoc.MixProject do
   use Mix.Project
 
-  @version "1.2.0"
+  @version "1.3.0"
   @source_url "https://github.com/salva-ruiz/spanish_doc"
 
 
   def project do
     [
       app: :spanish_doc,
-      version: "1.2.0",
+      version: "1.3.0",
       elixir: "~> 1.15",
       start_permanent: Mix.env() == :prod,
       deps: deps(),

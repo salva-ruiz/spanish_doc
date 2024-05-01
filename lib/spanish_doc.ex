@@ -27,7 +27,7 @@ defmodule SpanishDoc do
   """
   @spec valid?(String.t()) :: boolean()
   def valid?(text) when is_binary(text) do
-    case new(text) do
+    case new(String.upcase(text)) do
       {:ok, _doc} -> true
       {:error, _reason} -> false
     end
@@ -47,7 +47,7 @@ defmodule SpanishDoc do
       iex> SpanishDoc.parse("Q4978527B")
       {:ok, :nif, "Q4978527B"}
 
-      iex> SpanishDoc.parse("Y6115461M")
+      iex> SpanishDoc.parse("y6115461m")
       {:ok, :nie, "Y6115461M"}
 
       iex> SpanishDoc.parse("16.659.622-D")
@@ -68,7 +68,7 @@ defmodule SpanishDoc do
   """
   @spec parse(String.t()) :: {:ok, :nif | :nie, String.t()} | {:error, String.t()}
   def parse(text) when is_binary(text) do
-    with {:ok, doc} <- new(text), do: {:ok, doc_type(doc), to_string(doc)}
+    with {:ok, doc} <- new(String.upcase(text)), do: {:ok, doc_type(doc), to_string(doc)}
   end
 
   @doc """
@@ -91,7 +91,7 @@ defmodule SpanishDoc do
   """
   @spec obfuscate(String.t()) :: {:ok, :nif | :nie, String.t()} | {:error, String.t()}
   def obfuscate(text) when is_binary(text) do
-    with {:ok, doc} <- new(text) do
+    with {:ok, doc} <- new(String.upcase(text)) do
       case doc do
         %NIF{} ->
           {:ok, doc_type(doc), "***" <> String.slice(text, 3, 4) <> "**"}

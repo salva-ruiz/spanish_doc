@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.3.0 (2024-05-01)
+
+* The use of lowercase letters is allowed.
+
 ## v1.2.0 (2023-12-20)
 
 * Refactoring and improvement of documentation.
