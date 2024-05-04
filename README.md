@@ -12,7 +12,7 @@ Add `spanish_doc` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:spanish_doc, "~> 1.3.0"}
+    {:spanish_doc, "~> 1.4.0"}
   ]
 end
 ```

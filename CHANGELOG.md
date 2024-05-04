@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.4.0 (2024-05-04)
+
+* Added a `SpanishDoc.EctoType` custom field type to use in `Ecto.Schema`.
+
+```
+schema "my_schema" do
+  field :nif_document, SpanishDoc.EctoType
+  ...
+end
+```
+
 ## v1.3.0 (2024-05-01)
 
 * The use of lowercase letters is allowed.

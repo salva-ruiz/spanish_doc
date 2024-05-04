@@ -1,14 +1,13 @@
 defmodule SpanishDoc.MixProject do
   use Mix.Project
 
-  @version "1.3.0"
+  @version "1.4.0"
   @source_url "https://github.com/salva-ruiz/spanish_doc"
-
 
   def project do
     [
       app: :spanish_doc,
-      version: "1.3.0",
+      version: "1.4.0",
       elixir: "~> 1.15",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -35,7 +34,8 @@ defmodule SpanishDoc.MixProject do
   defp deps do
     [
       {:ex_doc, "~> 0.27", only: :dev, runtime: false},
-      {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
+      {:ecto, "~> 3.6"}
     ]
   end
 
